@@ -439,12 +439,13 @@ public class MusicControlModule extends ReactContextBaseJavaModule implements Co
                 }
 
             } else {
-
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inPreferredConfig = Bitmap.Config.RGB_565;
                 // Open connection to the URL and decodes the image
                 URLConnection con = new URL(url).openConnection();
                 con.connect();
                 InputStream input = con.getInputStream();
-                bitmap = BitmapFactory.decodeStream(input);
+                bitmap = BitmapFactory.decodeStream(input, null, options);
                 input.close();
 
             }
